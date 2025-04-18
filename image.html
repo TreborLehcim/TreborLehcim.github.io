@@ -1,3 +1,13 @@
 <script>
-    location.replace('https://media-cdn.vwe.nl/Images/148209104.jpg?s=&l=&w=512&overlay=bov%2Cnap%2Crdw&templateid=')
+    //location.replace('https://media-cdn.vwe.nl/Images/148209104.jpg?s=&l=&w=512&overlay=bov%2Cnap%2Crdw&templateid=')
+    const imageUrl = 'https://media-cdn.vwe.nl/Images/148209104.jpg?s=&l=&w=512&overlay=bov%2Cnap%2Crdw&templateid=';
+    const response = await fetch(imageUrl);
+    if (!response.ok) throw new Error('Image fetch failed');
+    const blob = await response.blob();
+
+    // Create a blob URL
+    const blobUrl = URL.createObjectURL(blob);
+
+    // Redirect browser to the blob URL
+    window.location.href = blobUrl;
 </script>
