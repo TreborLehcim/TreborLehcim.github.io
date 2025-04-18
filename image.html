@@ -1,13 +1,18 @@
 <script>
     //location.replace('https://media-cdn.vwe.nl/Images/148209104.jpg?s=&l=&w=512&overlay=bov%2Cnap%2Crdw&templateid=')
     const imageUrl = 'https://media-cdn.vwe.nl/Images/148209104.jpg?s=&l=&w=512&overlay=bov%2Cnap%2Crdw&templateid=';
-    const response = await fetch(imageUrl);
-    if (!response.ok) throw new Error('Image fetch failed');
-    const blob = await response.blob();
-
-    // Create a blob URL
-    const blobUrl = URL.createObjectURL(blob);
-
-    // Redirect browser to the blob URL
-    window.location.href = blobUrl;
+    const response = fetch(imageUrl)
+    .then(function (response) {
+        if (!response.ok) {
+            throw new Error('Image fetch failed');
+        }
+        return response.blob();
+    })
+    .then(function (blob) {
+        var blobUrl = URL.createObjectURL(blob);
+        window.location.href = blobUrl;
+    })
+    .catch(function (error) {
+        console.error('Error fetching or redirecting to image:', error);
+    });
 </script>
