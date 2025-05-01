@@ -1,2 +1,5 @@
 User-agent: facebookexternalhit
-Disallow: /148209104.jpg
+Allow: /
+
+User-agent: *
+Disallow: /
